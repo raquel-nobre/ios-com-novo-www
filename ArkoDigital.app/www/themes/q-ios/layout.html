@@ -1,0 +1,823 @@
+<style type="text/css" id="cssID">
+    .ajax-loader {
+        /* visibility: hidden; */
+         background-color: rgb(0, 0, 0); 
+        position: absolute;
+        z-index: 1 !important;
+        width: 100%;
+        height: 85%;
+        top: 8% ;
+    }
+
+    .ajax-loader img {
+        position: relative;
+        top: 30%;
+        left: 45%;
+        height: 25px;
+        width: 45px;
+        z-index: 1000;
+    }
+
+    .btn-menu {
+        border: none;
+        margin: 0;
+        padding: 0;
+        color: red;
+        background-color: #232222;
+        font-size: 20px;
+    }
+
+    li {
+        margin: auto;
+    }
+
+    #logoBar {
+        position: fixed;
+        top: 0px;
+        height: 8%;
+        width: 100%;
+        background-color: #232222;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+        display: flex;
+    }
+
+    #menuBar {
+        display: none;
+        position: fixed;
+        bottom: 0px;
+        height: 8%;
+        width: 100%;
+        background-color: #232222;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+
+    #menuIcons {
+        display: flex;
+        list-style-type: none;
+        padding-inline-start: 0;
+        margin: auto;
+    }
+
+    .menu-toggle:hover,
+    .menu-toggle:focus,
+    .btn-menu:hover,
+    .btn-menu:focus {
+        color: white !important;
+
+    }
+
+    .bi-activity:hover,
+    .bi-activity:focus {
+        border-bottom: 1px solid white
+    }
+
+    a {
+        color: #ff1111 !important;
+        text-decoration: none;
+    }
+
+    #img-login {
+        height: 40px;
+        position: absolute;
+        margin: 10px;
+    }
+
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 999;
+        top: 0;
+        /* left: 0; */
+        right: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        overflow-y: scroll;
+        transition: 0.5s;
+        /* padding-top: 60px; */
+        /* text-align:center; */
+    }
+
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 15px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+        contain: content;
+        line-height: 1.2;
+    }
+
+    .sidenav a:hover {
+        color: #f1f1f1;
+    }
+
+    .sidenav .closebtn {
+        /* position: absolute; */
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        /* margin-left: 50px; */
+    }
+
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 15px;
+        }
+
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
+
+    .navbar-toggle {
+        margin-right: 15px;
+    }
+
+    #logoutDiv {
+        margin-bottom: 70px;
+    }
+
+    .glyphicon .glyphicon-chevron-right {
+        color: gray;
+        font-size: 9px;
+        height: 12px;
+        width: 12px;
+    }
+
+    .containermenu,
+    #secondcontaineruser {
+        background-color: #232222;
+    }
+
+    .glyphicon-chevron-right {
+        font-size: 12px;
+        top: 5px;
+        color: grey;
+    }
+
+    .linkmenu {
+        color: white !important;
+    }
+
+    .search {
+        position: relative;
+        box-shadow: 0 0 40px rgba(51, 51, 51, 0.1);
+    }
+
+    .search input {
+        height: 30px;
+        text-indent: 25px;
+        border: none;
+        border-radius: 15px;
+        background-color: #313131;
+        padding: none !important;
+    }
+
+    #searchinputmenu {
+        width: 90% !important;
+        margin-left: 10px;
+    }
+
+    #iconsearchmenu {
+        left: 25px !important;
+    }
+
+    .search input:focus {
+        box-shadow: none;
+        border: 2px solid #ff1111;
+    }
+
+    .search .fa-search {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        color: gray;
+    }
+
+    #avatarMenu {
+        border-radius: 50%;
+        width: 20%;
+        float: left;
+        margin-right: 20px;
+    }
+
+    button.list-group-item {
+        width: 100%;
+        text-align: left;
+    }
+
+    .list-group-item {
+        width: 100% !important;
+        background-color: black !important;
+        margin-bottom: 0px;
+        border: none;
+        border-bottom: 0.3px solid rgb(109, 1, 1) !important;
+        color: white;
+
+    }
+
+    .list-group-item:first-child {
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+    }
+
+    .list-group-item:last-child {
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+    }
+
+    .list-group {
+        border: none;
+        /* background-color: #000000 !important; */
+        object-fit: contain;
+        border-radius: 10px;
+        width: 90%;
+        padding-inline-start: 40px;
+    }
+
+    #btntimeline,
+    #btnprofile,
+    #btnconexoes,
+    #btngrupos,
+    #btncursos,
+    #btnforums,
+    #btnemailsinvite {
+        border-bottom: 0.3px solid rgb(109, 1, 1) !important;
+        border: none;
+    }
+
+    #badgecursos,
+    #badgegrupos {
+        float: none;
+        margin-left: 125px;
+        background-color: #250505c9;
+        color: red;
+        font-size: 9px;
+        font-weight: 600;
+    }
+
+    .panel {
+        border: none !important;
+        margin: auto;
+        width: 80%;
+        border-radius: 10px;
+        margin: 10px auto 0px auto;
+    }
+
+    .panel-heading,
+    .panel-title,
+    .panel-body,
+    .panel-footer {
+        background-color: #232222 !important;
+        background-image: none !important;
+        border: none !important;
+    }
+
+    .panel-body {
+        color: white;
+    }
+
+    .containermenu,
+    #secondcontaineruser {
+        background-color: #232222;
+    }
+
+    .linkmenu {
+        color: white !important;
+    }
+
+    .glyphicon-chevron-right {
+        font-size: 12px;
+        top: 5px;
+        color: grey;
+    }
+
+    body {
+        background-color: black;
+    }
+
+    #containermenu span {
+        margin: 10px auto 10px auto;
+        color: gray;
+        text-align: center;
+        display: block;
+    }
+
+    .menu-title {
+        color: gray;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        display: inline-block;
+        margin: 40px 40px 20px;
+        font-size: 20px;
+        font-weight: 700;
+    }
+</style>
+<div id="mySidebar" class="sidenav">
+    <a class="closebtn" id="menu-close" type="button" onclick="closeNav()" style="float: left;">&times;</a>
+
+    <span class="menu-title">
+        Menu</span>
+    <div class="search"> <i class="fa fa-search" id="iconsearchmenu"></i> <input type="text" id="searchinputmenu"
+            class="form-control" placeholder="Buscar">
+    </div>
+    <script>
+        $(document).ready(function () {
+            $("#searchinputmenu").on("keyup", function () {
+                var value = $(this).val().toLowerCase();
+                $("#containermenu").filter(function () {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+        });
+    </script>
+    <div class="container" id="containermenu">
+        <div class="panel panel-default" style="background-color: black;  ">
+            <a class="linkmenu" onclick="closeNav()" href="#user-page" target="quadro">
+                <img src="https://www.w3schools.com/howto/img_avatar.png" id="avatarMenu" alt="">
+                Nome
+                </br>
+                user.login
+
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </div>
+
+        <div class="panel panel-default" style="background-color: black;  ">
+
+            <a class="linkmenu" onclick="closeNav(); siteLoaded2()" href="https://arko.digital/app-private/" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-chat-left-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M2 0a2 2 0 0 0-2 2v12.793a.5.5 0 0 0 .854.353l2.853-2.853A1 1 0 0 1 4.414 12H14a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+                </svg>
+                PRIVATE
+                </br> Pergunte à ARKO
+
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </div>
+
+        <span>APP</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; " target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-bell-fill" style="margin-right: 10px;"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
+                </svg>
+                Notificações
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; margin-right: 10px;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-envelope-fill" style="margin-right: 10px;"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                </svg>
+                Mensagens
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; " target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-gear-fill" style="margin-right: 10px;"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z" />
+                </svg>
+                Configurações
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </ul>
+        <span>RELATÓRIOS</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-paperclip" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M4.5 3a2.5 2.5 0 0 1 5 0v9a1.5 1.5 0 0 1-3 0V5a.5.5 0 0 1 1 0v7a.5.5 0 0 0 1 0V3a1.5 1.5 0 1 0-3 0v9a2.5 2.5 0 0 0 5 0V5a.5.5 0 0 1 1 0v7a3.5 3.5 0 1 1-7 0V3z" />
+                </svg>
+                Briefing
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; " target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-thermometer-half" style="margin-right: 10px;"  viewBox="0 0 16 16">
+                    <path d="M9.5 12.5a1.5 1.5 0 1 1-2-1.415V6.5a.5.5 0 0 1 1 0v4.585a1.5 1.5 0 0 1 1 1.415z" />
+                    <path
+                        d="M5.5 2.5a2.5 2.5 0 0 1 5 0v7.55a3.5 3.5 0 1 1-5 0V2.5zM8 1a1.5 1.5 0 0 0-1.5 1.5v7.987l-.167.15a2.5 2.5 0 1 0 3.333 0l-.166-.15V2.5A1.5 1.5 0 0 0 8 1z" />
+                </svg>
+                Política Brasileira
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-signpost-split-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M7 16h2V6h5a1 1 0 0 0 .8-.4l.975-1.3a.5.5 0 0 0 0-.6L14.8 2.4A1 1 0 0 0 14 2H9v-.586a1 1 0 0 0-2 0V7H2a1 1 0 0 0-.8.4L.225 8.7a.5.5 0 0 0 0 .6l.975 1.3a1 1 0 0 0 .8.4h5v5z" />
+                </svg>
+                Cenários
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </ul>
+        <span>ANÁLISES & CALLS</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-cup-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M1 2a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v1h.5A1.5 1.5 0 0 1 16 4.5v7a1.5 1.5 0 0 1-1.5 1.5h-.55a2.5 2.5 0 0 1-2.45 2h-8A2.5 2.5 0 0 1 1 12.5V2zm13 10h.5a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.5-.5H14v8z" />
+                </svg>
+                Morning Call
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-calendar-check-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
+                </svg>
+                Resumo do Dia
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-bar-chart-line-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1V2z" />
+                </svg>
+                Análises
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-mic-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path d="M5 3a3 3 0 0 1 6 0v5a3 3 0 0 1-6 0V3z" />
+                    <path
+                        d="M3.5 6.5A.5.5 0 0 1 4 7v1a4 4 0 0 0 8 0V7a.5.5 0 0 1 1 0v1a5 5 0 0 1-4.5 4.975V15h3a.5.5 0 0 1 0 1h-7a.5.5 0 0 1 0-1h3v-2.025A5 5 0 0 1 3 8V7a.5.5 0 0 1 .5-.5z" />
+                </svg>
+                Direto da Fonte
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-globe"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm7.5-6.923c-.67.204-1.335.82-1.887 1.855A7.97 7.97 0 0 0 5.145 4H7.5V1.077zM4.09 4a9.267 9.267 0 0 1 .64-1.539 6.7 6.7 0 0 1 .597-.933A7.025 7.025 0 0 0 2.255 4H4.09zm-.582 3.5c.03-.877.138-1.718.312-2.5H1.674a6.958 6.958 0 0 0-.656 2.5h2.49zM4.847 5a12.5 12.5 0 0 0-.338 2.5H7.5V5H4.847zM8.5 5v2.5h2.99a12.495 12.495 0 0 0-.337-2.5H8.5zM4.51 8.5a12.5 12.5 0 0 0 .337 2.5H7.5V8.5H4.51zm3.99 0V11h2.653c.187-.765.306-1.608.338-2.5H8.5zM5.145 12c.138.386.295.744.468 1.068.552 1.035 1.218 1.65 1.887 1.855V12H5.145zm.182 2.472a6.696 6.696 0 0 1-.597-.933A9.268 9.268 0 0 1 4.09 12H2.255a7.024 7.024 0 0 0 3.072 2.472zM3.82 11a13.652 13.652 0 0 1-.312-2.5h-2.49c.062.89.291 1.733.656 2.5H3.82zm6.853 3.472A7.024 7.024 0 0 0 13.745 12H11.91a9.27 9.27 0 0 1-.64 1.539 6.688 6.688 0 0 1-.597.933zM8.5 12v2.923c.67-.204 1.335-.82 1.887-1.855.173-.324.33-.682.468-1.068H8.5zm3.68-1h2.146c.365-.767.594-1.61.656-2.5h-2.49a13.65 13.65 0 0 1-.312 2.5zm2.802-3.5a6.959 6.959 0 0 0-.656-2.5H12.18c.174.782.282 1.623.312 2.5h2.49zM11.27 2.461c.247.464.462.98.64 1.539h1.835a7.024 7.024 0 0 0-3.072-2.472c.218.284.418.598.597.933zM10.855 4a7.966 7.966 0 0 0-.468-1.068C9.835 1.897 9.17 1.282 8.5 1.077V4h2.355z" />
+                </svg>
+                Alerta Geopolítico
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-hammer"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M9.972 2.508a.5.5 0 0 0-.16-.556l-.178-.129a5.009 5.009 0 0 0-2.076-.783C6.215.862 4.504 1.229 2.84 3.133H1.786a.5.5 0 0 0-.354.147L.146 4.567a.5.5 0 0 0 0 .706l2.571 2.579a.5.5 0 0 0 .708 0l1.286-1.29a.5.5 0 0 0 .146-.353V5.57l8.387 8.873A.5.5 0 0 0 14 14.5l1.5-1.5a.5.5 0 0 0 .017-.689l-9.129-8.63c.747-.456 1.772-.839 3.112-.839a.5.5 0 0 0 .472-.334z" />
+                </svg>
+                Palavra Final
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </ul>
+
+        <span>FERRAMENTAS</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-folder-fill" style="margin-right: 10px;"
+                    viewBox="0 0 16 16">
+                    <path
+                        d="M9.828 3h3.982a2 2 0 0 1 1.992 2.181l-.637 7A2 2 0 0 1 13.174 14H2.825a2 2 0 0 1-1.991-1.819l-.637-7a1.99 1.99 0 0 1 .342-1.31L.5 3a2 2 0 0 1 2-2h3.672a2 2 0 0 1 1.414.586l.828.828A2 2 0 0 0 9.828 3zm-8.322.12C1.72 3.042 1.95 3 2.19 3h5.396l-.707-.707A1 1 0 0 0 6.172 2H2.5a1 1 0 0 0-1 .981l.006.139z" />
+                </svg>
+                Documentos
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; " target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-zoom-in"
+                     viewBox="0 0 16 16" style="margin-right: 10px;"> 
+                    <path fill-rule="evenodd"
+                        d="M6.5 12a5.5 5.5 0 1 0 0-11 5.5 5.5 0 0 0 0 11zM13 6.5a6.5 6.5 0 1 1-13 0 6.5 6.5 0 0 1 13 0z" />
+                    <path
+                        d="M10.344 11.742c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1 6.538 6.538 0 0 1-1.398 1.4z" />
+                    <path fill-rule="evenodd"
+                        d="M6.5 3a.5.5 0 0 1 .5.5V6h2.5a.5.5 0 0 1 0 1H7v2.5a.5.5 0 0 1-1 0V7H3.5a.5.5 0 0 1 0-1H6V3.5a.5.5 0 0 1 .5-.5z" />
+                </svg>
+                Monitor de Pautas
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-speedometer2" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M8 4a.5.5 0 0 1 .5.5V6a.5.5 0 0 1-1 0V4.5A.5.5 0 0 1 8 4zM3.732 5.732a.5.5 0 0 1 .707 0l.915.914a.5.5 0 1 1-.708.708l-.914-.915a.5.5 0 0 1 0-.707zM2 10a.5.5 0 0 1 .5-.5h1.586a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 10zm9.5 0a.5.5 0 0 1 .5-.5h1.5a.5.5 0 0 1 0 1H12a.5.5 0 0 1-.5-.5zm.754-4.246a.389.389 0 0 0-.527-.02L7.547 9.31a.91.91 0 1 0 1.302 1.258l3.434-4.297a.389.389 0 0 0-.029-.518z" />
+                    <path fill-rule="evenodd"
+                        d="M0 10a8 8 0 1 1 15.547 2.661c-.442 1.253-1.845 1.602-2.932 1.25C11.309 13.488 9.475 13 8 13c-1.474 0-3.31.488-4.615.911-1.087.352-2.49.003-2.932-1.25A7.988 7.988 0 0 1 0 10zm8-7a7 7 0 0 0-6.603 9.329c.203.575.923.876 1.68.63C4.397 12.533 6.358 12 8 12s3.604.532 4.923.96c.757.245 1.477-.056 1.68-.631A7 7 0 0 0 8 3z" />
+                </svg>
+                Mapa de Tendências
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-newspaper"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M0 2.5A1.5 1.5 0 0 1 1.5 1h11A1.5 1.5 0 0 1 14 2.5v10.528c0 .3-.05.654-.238.972h.738a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 1 1 0v9a1.5 1.5 0 0 1-1.5 1.5H1.497A1.497 1.497 0 0 1 0 13.5v-11zM12 14c.37 0 .654-.211.853-.441.092-.106.147-.279.147-.531V2.5a.5.5 0 0 0-.5-.5h-11a.5.5 0 0 0-.5.5v11c0 .278.223.5.497.5H12z" />
+                    <path
+                        d="M2 3h10v2H2V3zm0 3h4v3H2V6zm0 4h4v1H2v-1zm0 2h4v1H2v-1zm5-6h2v1H7V6zm3 0h2v1h-2V6zM7 8h2v1H7V8zm3 0h2v1h-2V8zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1zm-3 2h2v1H7v-1zm3 0h2v1h-2v-1z" />
+                </svg>
+                News
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-calendar2-event-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5zm9.954 3H2.545c-.3 0-.545.224-.545.5v1c0 .276.244.5.545.5h10.91c.3 0 .545-.224.545-.5v-1c0-.276-.244-.5-.546-.5zM11.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+                </svg>
+                Agenda
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-bezier"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
+                    <path
+                        d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z" />
+                </svg>
+                B.I. - Arko Intelligence (Em Breve)
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </ul>
+
+        <span>ACADEMY</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-mortarboard-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M8.211 2.047a.5.5 0 0 0-.422 0l-7.5 3.5a.5.5 0 0 0 .025.917l7.5 3a.5.5 0 0 0 .372 0L14 7.14V13a1 1 0 0 0-1 1v2h3v-2a1 1 0 0 0-1-1V6.739l.686-.275a.5.5 0 0 0 .025-.917l-7.5-3.5Z" />
+                    <path fill-rule="evenodd"
+                        d="M4.176 9.032a.5.5 0 0 0-.656.327l-.5 1.7a.5.5 0 0 0 .294.605l4.5 1.8a.5.5 0 0 0 .372 0l4.5-1.8a.5.5 0 0 0 .294-.605l-.5-1.7a.5.5 0 0 0-.656-.327L8 10.466 4.176 9.032Z" />
+                </svg>
+                Cursos
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-book-half"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M8.5 2.687c.654-.689 1.782-.886 3.112-.752 1.234.124 2.503.523 3.388.893v9.923c-.918-.35-2.107-.692-3.287-.81-1.094-.111-2.278-.039-3.213.492V2.687zM8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783z" />
+                </svg>
+                Glossário Político
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-vector-pen"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M10.646.646a.5.5 0 0 1 .708 0l4 4a.5.5 0 0 1 0 .708l-1.902 1.902-.829 3.313a1.5 1.5 0 0 1-1.024 1.073L1.254 14.746 4.358 4.4A1.5 1.5 0 0 1 5.43 3.377l3.313-.828L10.646.646zm-1.8 2.908-3.173.793a.5.5 0 0 0-.358.342l-2.57 8.565 8.567-2.57a.5.5 0 0 0 .34-.357l.794-3.174-3.6-3.6z" />
+                    <path fill-rule="evenodd" d="M2.832 13.228 8 9a1 1 0 1 0-1-1l-4.228 5.168-.026.086.086-.026z" />
+                </svg>
+                Executivo
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-people-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
+                    <path fill-rule="evenodd"
+                        d="M5.216 14A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216z" />
+                    <path d="M4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z" />
+                </svg>
+                Legislativo
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav(); siteLoaded2()" href="https://arko.digital/app-judiciario/" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-bank2"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M8.277.084a.5.5 0 0 0-.554 0l-7.5 5A.5.5 0 0 0 .5 6h1.875v7H1.5a.5.5 0 0 0 0 1h13a.5.5 0 1 0 0-1h-.875V6H15.5a.5.5 0 0 0 .277-.916l-7.5-5zM12.375 6v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zm-2.5 0v7h-1.25V6h1.25zM8 4a1 1 0 1 1 0-2 1 1 0 0 1 0 2zM.5 15a.5.5 0 0 0 0 1h15a.5.5 0 1 0 0-1H.5z" />
+                </svg>
+                Judiciário
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+
+        </ul>
+        <span>COMUNIDADE</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-person-badge-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2zm4.5 0a.5.5 0 0 0 0 1h3a.5.5 0 0 0 0-1h-3zM8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm5 2.755C12.146 12.825 10.623 12 8 12s-4.146.826-5 1.755V14a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-.245z" />
+                </svg>
+                Membros
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+
+        </ul>
+
+        <span>ASSINATURA</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-key-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M3.5 11.5a3.5 3.5 0 1 1 3.163-5H14L15.5 8 14 9.5l-1-1-1 1-1-1-1 1-1-1-1 1H6.663a3.5 3.5 0 0 1-3.163 2zM2.5 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
+                </svg>
+                Assinar
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important; " target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-cart-fill"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+                </svg>
+                Carrinho
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav()" href="#" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red"
+                    class="bi bi-credit-card-2-front-fill" style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2.5 1a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h2a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-2zm0 3a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zm0 2a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1zm3 0a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z" />
+                </svg>
+                Finalizar compra
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </ul>
+
+        <span>LEGAL</span>
+        <ul class="list-group">
+            <a class="list-group-item" onclick="closeNav()" href="#page/briefing/98911" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-card-list"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                    <path
+                        d="M5 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 5 8zm0-2.5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm0 5a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7a.5.5 0 0 1-.5-.5zm-1-5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zM4 8a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0zm0 2.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />
+                </svg>
+                Termos de Serviço
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+            <a class="list-group-item" onclick="closeNav(); siteLoaded2()" href="https://arko.digital/app-politica-de-privacidade/‎" style="color: white!important;" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-fingerprint" 
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path
+                        d="M8.06 6.5a.5.5 0 0 1 .5.5v.776a11.5 11.5 0 0 1-.552 3.519l-1.331 4.14a.5.5 0 0 1-.952-.305l1.33-4.141a10.5 10.5 0 0 0 .504-3.213V7a.5.5 0 0 1 .5-.5Z" />
+                    <path
+                        d="M6.06 7a2 2 0 1 1 4 0 .5.5 0 1 1-1 0 1 1 0 1 0-2 0v.332c0 .409-.022.816-.066 1.221A.5.5 0 0 1 6 8.447c.04-.37.06-.742.06-1.115V7Zm3.509 1a.5.5 0 0 1 .487.513 11.5 11.5 0 0 1-.587 3.339l-1.266 3.8a.5.5 0 0 1-.949-.317l1.267-3.8a10.5 10.5 0 0 0 .535-3.048A.5.5 0 0 1 9.569 8Zm-3.356 2.115a.5.5 0 0 1 .33.626L5.24 14.939a.5.5 0 1 1-.955-.296l1.303-4.199a.5.5 0 0 1 .625-.329Z" />
+                    <path
+                        d="M4.759 5.833A3.501 3.501 0 0 1 11.559 7a.5.5 0 0 1-1 0 2.5 2.5 0 0 0-4.857-.833.5.5 0 1 1-.943-.334Zm.3 1.67a.5.5 0 0 1 .449.546 10.72 10.72 0 0 1-.4 2.031l-1.222 4.072a.5.5 0 1 1-.958-.287L4.15 9.793a9.72 9.72 0 0 0 .363-1.842.5.5 0 0 1 .546-.449Zm6 .647a.5.5 0 0 1 .5.5c0 1.28-.213 2.552-.632 3.762l-1.09 3.145a.5.5 0 0 1-.944-.327l1.089-3.145c.382-1.105.578-2.266.578-3.435a.5.5 0 0 1 .5-.5Z" />
+                    <path
+                        d="M3.902 4.222a4.996 4.996 0 0 1 5.202-2.113.5.5 0 0 1-.208.979 3.996 3.996 0 0 0-4.163 1.69.5.5 0 0 1-.831-.556Zm6.72-.955a.5.5 0 0 1 .705-.052A4.99 4.99 0 0 1 13.059 7v1.5a.5.5 0 1 1-1 0V7a3.99 3.99 0 0 0-1.386-3.028.5.5 0 0 1-.051-.705ZM3.68 5.842a.5.5 0 0 1 .422.568c-.029.192-.044.39-.044.59 0 .71-.1 1.417-.298 2.1l-1.14 3.923a.5.5 0 1 1-.96-.279L2.8 8.821A6.531 6.531 0 0 0 3.058 7c0-.25.019-.496.054-.736a.5.5 0 0 1 .568-.422Zm8.882 3.66a.5.5 0 0 1 .456.54c-.084 1-.298 1.986-.64 2.934l-.744 2.068a.5.5 0 0 1-.941-.338l.745-2.07a10.51 10.51 0 0 0 .584-2.678.5.5 0 0 1 .54-.456Z" />
+                    <path
+                        d="M4.81 1.37A6.5 6.5 0 0 1 14.56 7a.5.5 0 1 1-1 0 5.5 5.5 0 0 0-8.25-4.765.5.5 0 0 1-.5-.865Zm-.89 1.257a.5.5 0 0 1 .04.706A5.478 5.478 0 0 0 2.56 7a.5.5 0 0 1-1 0c0-1.664.626-3.184 1.655-4.333a.5.5 0 0 1 .706-.04ZM1.915 8.02a.5.5 0 0 1 .346.616l-.779 2.767a.5.5 0 1 1-.962-.27l.778-2.767a.5.5 0 0 1 .617-.346Zm12.15.481a.5.5 0 0 1 .49.51c-.03 1.499-.161 3.025-.727 4.533l-.07.187a.5.5 0 0 1-.936-.351l.07-.187c.506-1.35.634-2.74.663-4.202a.5.5 0 0 1 .51-.49Z" />
+                </svg>
+                Política de Privacidade
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+
+
+
+        </ul>
+
+        <div class="panel panel-default" id="logoutDiv" style="background-color: black; ">
+            <a class="linkmenu" id="logout" onclick="closeNav()" href="#login-page" target="quadro">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-box-arrow-left"
+                    style="margin-right: 10px;" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                        d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
+                    <path fill-rule="evenodd"
+                        d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z" />
+                </svg>
+                Logout
+                <span class="glyphicon glyphicon-chevron-right pull-right visible-xs"></span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="ajax-loader" id="loadingDiv">
+    <img src="https://gifimage.net/wp-content/uploads/2017/09/ajax-loading-gif-transparent-background-12.gif"
+        class="img-responsive" id="loading-image" />
+</div>
+
+<div style=" padding: 0px; background-color: #000; height: 93%; width: 100%">
+    <iframe src="https://arko.digital/arko-alerta-app/" align-items="center" name="quadro" id="quadro"
+        style=" width: 100%; height: 100%; border: 0px; margin-top: -7px;"
+        onload="siteLoaded()"></iframe>
+</div>
+</div>
+<div id="logoBar">
+    <img id="img-login" src="https://arko.digital/wp-content/uploads/2021/05/Arko-Private_verm-claro-glow-forte-2.png">
+</div>
+
+<div id="menuBar">
+    <ul id="menuIcons">
+
+        <li><a href="https://arko.digital/arko-alerta-app/" target="quadro" onclick="siteLoaded2()" id="alert-button"
+                class="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                    class="bi bi-activity" viewBox="0 0 16 16" style="border-bottom: 1px solid currentColor;">
+                    <path fill-rule="evenodd"
+                        d="M6 2a.5.5 0 0 1 .47.33L10 12.036l1.53-4.208A.5.5 0 0 1 12 7.5h3.5a.5.5 0 0 1 0 1h-3.15l-1.88 5.17a.5.5 0 0 1-.94 0L6 3.964 4.47 8.171A.5.5 0 0 1 4 8.5H.5a.5.5 0 0 1 0-1h3.15l1.88-5.17A.5.5 0 0 1 6 2Z" />
+                </svg></a>
+        </li>
+        <li><a href="https://arko.digital/app-private/" id="private-button" class="menu-toggle" target="quadro"
+                onclick="siteLoaded4()"> <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                    fill="currentColor" class="bi bi-chat-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6-.097 1.016-.417 2.13-.771 2.966-.079.186.074.394.273.362 2.256-.37 3.597-.938 4.18-1.234A9.06 9.06 0 0 0 8 15z" />
+                </svg>
+            </a></li>
+        <li><a href="https://arko.digital/app-relatorios/" id="relatorios-button" class="menu-toggle" target="quadro"
+                onclick="siteLoaded5()"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                    fill="currentColor" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                    <path
+                        d="M5.5 7a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1h-5zM5 9.5a.5.5 0 0 1 .5-.5h5a.5.5 0 0 1 0 1h-5a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h2a.5.5 0 0 1 0 1h-2a.5.5 0 0 1-.5-.5z" />
+                    <path
+                        d="M9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V4.5L9.5 0zm0 1v2A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5z" />
+                </svg>
+            </a></li>
+        <li><a href="https://arko.digital/app-live/" id="live-button" target="quadro" onclick="siteLoaded3()"
+                class="menu-toggle"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                    class="bi bi-play-btn-fill" viewBox="0 0 16 16">
+                    <path
+                        d="M0 12V4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm6.79-6.907A.5.5 0 0 0 6 5.5v5a.5.5 0 0 0 .79.407l3.5-2.5a.5.5 0 0 0 0-.814l-3.5-2.5z" />
+                </svg>
+            </a></li>
+
+        <li><button type="button" class="btn-menu" id="menu-toggle" onclick="list()">
+                ☰
+            </button>
+        </li>
+    </ul>
+</div>
+
+
+<script>
+    function siteLoaded() {
+
+        var teste = $("#quadro").contents().find("#chave").html();
+        document.getElementById('loadingDiv').style.display = 'none';
+        document.getElementById('menuBar').style.display = 'block';
+
+        // alert("frame content : " + teste);
+        
+    }
+
+    function siteLoaded2() {
+        document.getElementById('loadingDiv').style.display = 'block';
+        // document.onreadystatechange = function () {
+        //     while(document.readyState !== "complete") {
+        //         document.querySelector("#quadro").style.display = "none";
+
+        //     } 
+        // }
+        
+    }
+
+    function siteLoaded3() {
+        document.getElementById('loadingDiv').style.display = 'block';
+    }
+
+    function siteLoaded4() {
+        document.getElementById('loadingDiv').style.display = 'block';
+    }
+
+    function siteLoaded5() {
+        document.getElementById('loadingDiv').style.display = 'block';
+    }
+    // document.onreadystatechange = function () {
+    //     if (document.readyState !== "complete") {
+    //         document.querySelector("#quadro").style.visibility = "hidden";
+    //         document.querySelector("#loading-image").style.visibility = "visible";
+    //     } else {
+    //         document.querySelector("#loading-image").style.display = "none";
+    //         document.querySelector("#quadro").style.visibility = "visible";
+    //     }
+    // };
+
+    function list() {
+        var r = document.getElementById('mySidebar');
+        if (r.style.width === "0px") {
+            r.style.width = "80%"
+        } else {
+            r.style.width = "0px";
+        }
+    }
+    window.addEventListener('mouseup', function (e) {
+        if (!document.getElementById('mySidebar').contains(e.target) && (!document.getElementById(
+                    'menu-toggle')
+                .contains(e.target))) {
+            // alert("Clicked outside l2 and logo-menu");
+            document.getElementById('mySidebar').style.width =
+                "0px"; //the same code you've used to hide the menu
+        }
+    })
+    function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        
+    }
+
+</script>
